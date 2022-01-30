@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import BrandImage from "@/components/brand-image";
 import NavBar from "@/components/nav-bar";
+import Button from "@/components/button";
+import { Theme } from "@/types/theme";
 
 const Container = styled.div`
   width: 100%;
@@ -32,6 +34,22 @@ const RightContainer = styled.div`
   }
 `;
 
+const LinkButton = styled.a`
+  color: ${({ theme }: { theme: Theme }) => theme.palette.primary.main};
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    color: ${({ theme }: { theme: Theme }) => theme.palette.secondary.main};
+  }
+
+  &:active {
+    color: ${({ theme }: { theme: Theme }) => theme.palette.secondary.dark};
+  }
+
+  transition: all 200ms;
+`;
+
 export default function Header() {
   return (
     <Container>
@@ -39,8 +57,8 @@ export default function Header() {
         <BrandImage />
         <NavBar />
         <RightContainer>
-          <button>Sign In</button>
-          <button>Sign Up</button>
+          <LinkButton href="#">Sign In</LinkButton>
+          <Button>Sign Up</Button>
         </RightContainer>
       </Content>
     </Container>
