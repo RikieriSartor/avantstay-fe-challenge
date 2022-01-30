@@ -33,7 +33,6 @@ const Anchor = styled.a<IAnchorProps>`
   font-size: 1rem;
   line-height: 142%;
   text-decoration: none;
-  letter-spacing: -0.01em;
 
   &:hover {
     color: ${({ theme }: { theme: Theme }) => theme.palette.secondary.main};
@@ -58,6 +57,8 @@ const Anchor = styled.a<IAnchorProps>`
         display: block;
       }
     `}
+
+  transition: 200ms;
 `;
 
 export default function NavLink({ href, label }: INavLinkProps) {

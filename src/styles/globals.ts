@@ -19,6 +19,8 @@ const GlobalStyle = createGlobalStyle`
     color: #022B54;
     background: #fff;
     font: 14px 'Source Sans Pro', sans-serif;
+    letter-spacing: -0.01em;
+
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased !important;
   }
