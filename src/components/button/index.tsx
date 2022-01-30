@@ -1,31 +1,54 @@
 import { Theme } from "@/types/theme";
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   kind?: "primary" | "secondary";
 }
 
 const SButton = styled.button<IButtonProps>`
-  border: 2px solid
-    ${({ theme }: { theme: Theme }) => theme.palette.primary.main};
   padding: 8px 24px;
   background: transparent;
   font-weight: 600;
   border-radius: 3px;
 
-  &:hover {
-    color: ${({ theme }: { theme: Theme }) => theme.palette.secondary.main};
-    border: 2px solid
-      ${({ theme }: { theme: Theme }) => theme.palette.secondary.main};
-    cursor: pointer;
-  }
+  ${({ kind }) => css`
+    color: ${({ theme }: { theme: Theme }) =>
+      kind === "primary"
+        ? theme.palette.primary.main
+        : theme.palette.secondary.main};
 
-  &:active {
-    color: ${({ theme }: { theme: Theme }) => theme.palette.secondary.dark};
     border: 2px solid
-      ${({ theme }: { theme: Theme }) => theme.palette.secondary.dark};
-  }
+      ${({ theme }: { theme: Theme }) =>
+        kind === "primary"
+          ? theme.palette.primary.main
+          : theme.palette.secondary.main};
+
+    &:hover {
+      color: ${({ theme }: { theme: Theme }) =>
+        kind === "primary"
+          ? theme.palette.secondary.main
+          : theme.palette.primary.light};
+      border: 2px solid
+        ${({ theme }: { theme: Theme }) =>
+          kind === "primary"
+            ? theme.palette.secondary.main
+            : theme.palette.primary.light};
+      cursor: pointer;
+    }
+
+    &:active {
+      color: ${({ theme }: { theme: Theme }) =>
+        kind === "primary"
+          ? theme.palette.secondary.dark
+          : theme.palette.primary.main};
+      border: 2px solid
+        ${({ theme }: { theme: Theme }) =>
+          kind === "primary"
+            ? theme.palette.secondary.dark
+            : theme.palette.primary.main};
+    }
+  `}
 
   transition: 200ms;
 `;
@@ -35,5 +58,9 @@ export default function Button({
   children,
   ...props
 }: IButtonProps) {
-  return <SButton {...props}>{children}</SButton>;
+  return (
+    <SButton kind={kind} {...props}>
+      {children}
+    </SButton>
+  );
 }
