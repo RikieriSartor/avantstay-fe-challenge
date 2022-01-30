@@ -1,7 +1,7 @@
-import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import BrandImage from "@/components/brand-image";
+import NavBar from "@/components/nav-bar";
 
 const Container = styled.div`
   width: 100%;
@@ -22,16 +22,6 @@ const Content = styled.nav`
   justify-content: space-between;
 `;
 
-const Navigation = styled.ul`
-  display: flex;
-  list-style: none;
-  align-items: center;
-  justify-content: center;
-  > * + * {
-    margin-left: 1rem;
-  }
-`;
-
 const RightContainer = styled.div`
   height: 100%;
   display: flex;
@@ -47,31 +37,7 @@ export default function Header() {
     <Container>
       <Content>
         <BrandImage />
-
-        {/* TODO: Future improvement -> Make it dynamic */}
-        <Navigation>
-          <li>
-            <Link href="/homes">
-              <a>Find Homes</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/partners">
-              <a>Partners</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/company-retreats">
-              <a>Company Retreats</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/more">
-              <a>More</a>
-            </Link>
-          </li>
-        </Navigation>
-
+        <NavBar />
         <RightContainer>
           <button>Sign In</button>
           <button>Sign Up</button>
