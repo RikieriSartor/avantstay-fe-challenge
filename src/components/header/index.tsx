@@ -4,10 +4,12 @@ import BrandImage from "@/components/brand-image";
 import NavBar from "@/components/nav-bar";
 import Button from "@/components/button";
 import { Theme } from "@/types/theme";
+import SearchBar from "@/components/search-bar";
 
 const Container = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   box-shadow: 4px 8px 40px rgba(227, 230, 234, 0.3);
   align-items: center;
   margin-bottom: 40px;
@@ -30,7 +32,7 @@ const RightContainer = styled.div`
   align-items: center;
 
   > * + * {
-    margin-left: 1rem;
+    margin-left: 20px;
   }
 `;
 
@@ -60,6 +62,9 @@ export default function Header() {
           <LinkButton href="#">Sign In</LinkButton>
           <Button>Sign Up</Button>
         </RightContainer>
+      </Content>
+      <Content>
+        <SearchBar />
       </Content>
     </Container>
   );
