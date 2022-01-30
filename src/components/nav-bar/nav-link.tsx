@@ -20,7 +20,7 @@ const Decorator = styled.div`
   background-color: ${({ theme }) => theme.palette.secondary.main};
 
   left: calc(50% - 10px);
-  bottom: -7px;
+  bottom: -6px;
   position: relative;
 `;
 

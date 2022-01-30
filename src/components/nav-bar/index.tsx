@@ -8,7 +8,7 @@ const Navigation = styled.ul`
   align-items: center;
   justify-content: center;
   > * + * {
-    margin-left: 1.5rem;
+    margin-left: 30px;
   }
 `;
 
