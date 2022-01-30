@@ -10,15 +10,16 @@ interface IFieldProps {
 const Container = styled.div`
   flex: 1;
   display: flex;
-  flex-direction: column;
   padding: 8px 15px;
+  flex-direction: column;
 
   border: 1px solid
     ${({ theme }: { theme: Theme }) => theme.palette.common.gray};
 
   &:hover {
-    box-shadow: 0 0 0 1px
+    border: 1px solid
       ${({ theme }: { theme: Theme }) => theme.palette.secondary.main};
+    z-index: 1;
   }
 
   label {

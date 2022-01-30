@@ -21,6 +21,20 @@ const Content = styled.div<IContentProps>`
   width: ${({ width }) => width};
   display: flex;
   margin-bottom: 24px;
+
+  > * + * {
+    margin-left: -1px;
+  }
+
+  > *:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  > *:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
 `;
 
 export default function SearchBar() {
