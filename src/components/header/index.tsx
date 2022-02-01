@@ -4,7 +4,6 @@ import BrandImage from "@/components/brand-image";
 import NavBar from "@/components/nav-bar";
 import Button from "@/components/button";
 import { Theme } from "@/types/theme";
-import SearchBar from "@/components/homes/search-bar";
 
 const Container = styled.div`
   width: 100%;
@@ -52,7 +51,7 @@ const LinkButton = styled.a`
   transition: all 200ms;
 `;
 
-export default function Header() {
+export default function Header({ children }: { children?: React.ReactNode }) {
   return (
     <Container>
       <Content>
@@ -63,9 +62,7 @@ export default function Header() {
           <Button>Sign Up</Button>
         </RightContainer>
       </Content>
-      <Content>
-        <SearchBar />
-      </Content>
+      {children && <Content>{children}</Content>}
     </Container>
   );
 }
