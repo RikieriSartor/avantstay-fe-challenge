@@ -6,9 +6,50 @@ import React from "react";
 import LoadingList from "@/components/homes/loading-list";
 import Header from "@/components/header";
 import SearchBar from "@/components/homes/search-bar";
+import { gql, useQuery } from "@apollo/client";
+import HomeList from "@/components/homes/home-list";
+
+export const GET_HOMES = gql`
+  query GetHomes {
+    homes {
+      count
+      results {
+        id
+        title
+        description
+
+        photos {
+          url
+          listOrder
+        }
+
+        cityName
+        stateName
+        regionName
+
+        hasPool
+        bedsCount
+        roomsCount
+        maxOccupancy
+        bathroomsCount
+
+        seasonPricing {
+          highSeason {
+            minPrice
+            maxPrice
+          }
+          lowSeason {
+            minPrice
+            maxPrice
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default function Homes() {
-  const isLoading = true;
+  const { loading, error, data } = useQuery(GET_HOMES);
 
   return (
     <Page>
@@ -23,9 +64,13 @@ export default function Homes() {
       </Header>
 
       <Main>
-        <SearchStats count={32} isLoading={isLoading} />
+        <SearchStats count={data?.homes?.count || 0} isLoading={loading} />
 
-        {isLoading ? <LoadingList /> : <>...</>}
+        {loading ? (
+          <LoadingList />
+        ) : (
+          data && data.homes.results && <HomeList homes={data.homes.results} />
+        )}
       </Main>
     </Page>
   );
