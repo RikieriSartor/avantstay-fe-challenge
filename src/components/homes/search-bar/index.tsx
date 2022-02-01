@@ -1,4 +1,3 @@
-import { Theme } from "@/types/theme";
 import React from "react";
 import styled from "styled-components";
 import Field from "@/components/field";
@@ -24,6 +23,8 @@ const Content = styled.div<IContentProps>`
 
   > * + * {
     margin-left: -1px;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
   }
 
   > *:first-child {
@@ -41,18 +42,10 @@ export default function SearchBar() {
   return (
     <Container>
       <Content width="80%">
-        <Field label="Where">
-          <input />
-        </Field>
-        <Field label="When">
-          <input />
-        </Field>
-        <Field label="Who">
-          <input />
-        </Field>
-        <Field label="Order">
-          <input />
-        </Field>
+        <Field label="Where">Where </Field>
+        <Field label="When">When </Field>
+        <Field label="Who">Who </Field>
+        <Field label="Order">Order</Field>
       </Content>
 
       <Content width="20%">

@@ -4,7 +4,7 @@ import BrandImage from "@/components/brand-image";
 import NavBar from "@/components/nav-bar";
 import Button from "@/components/button";
 import { Theme } from "@/types/theme";
-import SearchBar from "@/components/search-bar";
+import SearchBar from "@/components/homes/search-bar";
 
 const Container = styled.div`
   width: 100%;

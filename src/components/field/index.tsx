@@ -27,6 +27,8 @@ const Container = styled.div`
     font-weight: 400;
     line-height: 122%;
   }
+
+  transition: all 200ms;
 `;
 
 export default function Field({ label, children, ...props }: IFieldProps) {
