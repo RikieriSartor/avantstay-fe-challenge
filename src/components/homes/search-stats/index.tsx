@@ -36,7 +36,7 @@ const Counter = styled.div`
   }
 `;
 
-export default function SearchStats({ count, isLoading }: ISearchStatsProps) {
+const SearchStats = ({ count, isLoading }: ISearchStatsProps) => {
   return (
     <Box width="100%" mb="24px">
       <Headline>
@@ -48,4 +48,6 @@ export default function SearchStats({ count, isLoading }: ISearchStatsProps) {
       </Counter>
     </Box>
   );
-}
+};
+
+export default React.memo(SearchStats);

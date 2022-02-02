@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import styled from "styled-components";
 import Text from "@/components/text";
@@ -26,7 +25,7 @@ interface IHomeCardProps {
   home: Home;
 }
 
-export default function HomeCard({ home }: IHomeCardProps) {
+const HomeCard = ({ home }: IHomeCardProps) => {
   return (
     <Flex width="100%" height="100%">
       <HomeCarousel photos={home.photos} />
@@ -112,4 +111,6 @@ export default function HomeCard({ home }: IHomeCardProps) {
       </RightBox>
     </Flex>
   );
-}
+};
+
+export default React.memo(HomeCard);
