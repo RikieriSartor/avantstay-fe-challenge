@@ -55,6 +55,8 @@ export default function Homes() {
       query: GET_HOMES,
       variables: {
         page: currentPage,
+        guests: 2,
+        order: "PRICE_ASC", //PRICE_ASC, PRICE_DESC, RELEVANCE
       },
     });
 
@@ -94,9 +96,9 @@ export default function Homes() {
 
             <Flex
               ref={loaderRef}
-              width={1}
+              width="100%"
               alignItems="center"
-              justifyItems="center"
+              justifyContent="center"
             >
               {!hasEndingResults && (
                 <LoadingIndicator>
@@ -116,8 +118,20 @@ export default function Homes() {
 }
 
 export const GET_HOMES = gql`
-  query GetHomes($page: Int!) {
-    homes(page: $page) {
+  query GetHomes(
+    $page: Int
+    $order: HomesOrder!
+    $region: UUID
+    $period: BookingPeriod
+    $guests: Int!
+  ) {
+    homes(
+      page: $page
+      order: $order
+      region: $region
+      period: $period
+      guests: $guests
+    ) {
       count
       results {
         id
