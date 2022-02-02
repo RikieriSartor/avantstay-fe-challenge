@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import React from "react";
 import styled from "styled-components";
 import BrandImage from "@/components/brand-image";
@@ -55,7 +56,9 @@ export default function Header({ children }: { children?: React.ReactNode }) {
   return (
     <Container>
       <Content>
-        <BrandImage />
+        <a href="/">
+          <BrandImage />
+        </a>
         <NavBar />
         <RightContainer>
           <LinkButton href="#">Sign In</LinkButton>
