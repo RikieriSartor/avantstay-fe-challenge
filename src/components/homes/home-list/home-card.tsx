@@ -3,15 +3,9 @@ import React from "react";
 import styled from "styled-components";
 import Text from "@/components/text";
 import { Home } from "@/types/home";
-import { Box, Flex } from "reflexbox";
+import { Box, Flex } from "rebass";
 import Icon from "@/components/icon";
 import HomeCarousel from "../home-carousel";
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-`;
 
 const RightBox = styled.div`
   display: flex;
@@ -34,7 +28,7 @@ interface IHomeCardProps {
 
 export default function HomeCard({ home }: IHomeCardProps) {
   return (
-    <Container>
+    <Flex width="100%" height="100%">
       <HomeCarousel photos={home.photos} />
 
       <RightBox>
@@ -116,6 +110,6 @@ export default function HomeCard({ home }: IHomeCardProps) {
           </Box>
         </Flex>
       </RightBox>
-    </Container>
+    </Flex>
   );
 }

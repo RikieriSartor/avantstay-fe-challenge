@@ -1,12 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Skeleton from "@/components/skeleton";
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-`;
+import { Flex } from "rebass";
 
 const RightBox = styled.div`
   display: flex;
@@ -25,7 +20,7 @@ const Separator = styled.div`
 
 export default function LoadingCard() {
   return (
-    <Container>
+    <Flex width="100%" height="100%">
       <Skeleton width="390px" height="208px" />
       <RightBox>
         <Skeleton width="132px" />
@@ -38,6 +33,6 @@ export default function LoadingCard() {
         <Skeleton width="98px" height="22px" />
         <Skeleton width="45px" />
       </RightBox>
-    </Container>
+    </Flex>
   );
 }

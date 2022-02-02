@@ -1,18 +1,12 @@
 import { Theme } from "@/types/theme";
 import React from "react";
+import { Box } from "rebass";
 import styled from "styled-components";
 
 interface ISearchStatsProps {
   count?: number;
   isLoading: boolean;
 }
-
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  margin-bottom: 24px;
-  flex-direction: column;
-`;
 
 const Headline = styled.div`
   color: ${({ theme }: { theme: Theme }) => theme.palette.secondary.main};
@@ -44,7 +38,7 @@ const Counter = styled.div`
 
 export default function SearchStats({ count, isLoading }: ISearchStatsProps) {
   return (
-    <Container>
+    <Box width="100%" mb="24px">
       <Headline>
         {isLoading ? "PLEASE WAIT" : "YOUR STAY IN ONE OF"}
         <Separator />
@@ -52,6 +46,6 @@ export default function SearchStats({ count, isLoading }: ISearchStatsProps) {
       <Counter>
         <span>{isLoading ? "Loading" : count}</span> homes
       </Counter>
-    </Container>
+    </Box>
   );
 }
