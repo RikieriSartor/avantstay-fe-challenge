@@ -20,11 +20,12 @@ interface ITextProps
     SpaceProps,
     MaxWidthProps {
   color?: string;
+  whiteSpace?: string;
   children?: React.ReactNode;
   textTransform?: "none" | "capitalize" | "lowercase" | "uppercase";
 }
 
-const SText = styled.p<ITextProps>`
+const SText = styled.div<ITextProps>`
   align-items: center;
   text-transform: ${({ textTransform }) => textTransform};
 
@@ -37,6 +38,8 @@ const SText = styled.p<ITextProps>`
   ${lineHeight};
   ${fontFamily};
   ${letterSpacing};
+
+  ${({ whiteSpace }) => whiteSpace && `white-space: ${whiteSpace}`};
 `;
 
 const Text = ({ children, ...props }: ITextProps) => {

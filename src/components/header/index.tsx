@@ -9,10 +9,10 @@ import { Theme } from "@/types/theme";
 const Container = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
   box-shadow: 4px 8px 40px rgba(227, 230, 234, 0.3);
   align-items: center;
   margin-bottom: 40px;
+  flex-direction: column;
   justify-content: center;
 `;
 

@@ -55,24 +55,24 @@ const HomeCard = ({ home }: IHomeCardProps) => {
 
         <Flex width={1}>
           <Text mr="16px" fontSize={12} opacity={0.4}>
-            <Icon mx="-5px" my="-7px" pr="6px" src="assets/rooms.svg" />
+            <Icon mx="-5px" my="-7px" pr="6px" src="/assets/rooms.svg" />
             {home.bedsCount} Bedrooms
           </Text>
 
           <Text mr="16px" fontSize={12} opacity={0.4}>
-            <Icon my="-6px" mx="-3px" pr="6px" src="assets/bath.svg" />
+            <Icon my="-6px" mx="-3px" pr="6px" src="/assets/bath.svg" />
             {home.bathroomsCount} Bathrooms
           </Text>
 
           {home.hasPool && (
             <Text mr="16px" fontSize={12} opacity={0.4}>
-              <Icon my="-7px" mx="-6px" pr="6px" src="assets/pool.svg" />
+              <Icon my="-7px" mx="-6px" pr="6px" src="/assets/pool.svg" />
               Pool
             </Text>
           )}
 
           <Text mr="16px" fontSize={12} opacity={0.4}>
-            <Icon my="-7px" mx="-6px" pr="6px" src="assets/user.svg" />
+            <Icon my="-7px" mx="-6px" pr="6px" src="/assets/user.svg" />
             {home.maxOccupancy} Guests
           </Text>
         </Flex>
@@ -82,10 +82,10 @@ const HomeCard = ({ home }: IHomeCardProps) => {
         <Flex>
           <Box width={1}>
             <Text mb="4px" fontSize={12} opacity={0.4}>
-              <Icon mx="-4px" my="-3px" pr="6px" src="assets/low.svg" />
+              <Icon mx="-4px" my="-3px" pr="6px" src="/assets/low.svg" />
               Budget Season
             </Text>
-            <Text fontSize={20} fontWeight={700}>
+            <Text fontSize={20} fontWeight={700} whiteSpace="nowrap">
               ${home.seasonPricing.lowSeason.minPrice} - $
               {home.seasonPricing.lowSeason.maxPrice}
             </Text>
@@ -96,10 +96,10 @@ const HomeCard = ({ home }: IHomeCardProps) => {
 
           <Box width={1}>
             <Text mb="4px" fontSize={12} opacity={0.4}>
-              <Icon mx="-4px" my="-4px" pr="6px" src="assets/high.svg" />
+              <Icon mx="-4px" my="-4px" pr="6px" src="/assets/high.svg" />
               Prime Season
             </Text>
-            <Text fontSize={20} fontWeight={600}>
+            <Text fontSize={20} fontWeight={600} whiteSpace="nowrap">
               ${home.seasonPricing.highSeason.minPrice} - $
               {home.seasonPricing.highSeason.maxPrice}
             </Text>

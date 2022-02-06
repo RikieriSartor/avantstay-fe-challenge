@@ -30,7 +30,7 @@ interface IAnchorProps extends React.HtmlHTMLAttributes<HTMLAnchorElement> {
 
 const Anchor = styled.a<IAnchorProps>`
   color: ${({ theme }) => theme.palette.primary.main};
-  font-size: 1rem;
+  font-size: 13px;
   line-height: 142%;
   text-decoration: none;
 
