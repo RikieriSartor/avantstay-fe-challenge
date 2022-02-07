@@ -29,7 +29,7 @@ const SSkeleton = styled.div<ISkeletonProps>`
 
 export default function Skeleton({
   width = "130px",
-  height = "17px",
+  height = "16px",
   isLoading,
 }: ISkeletonProps) {
   return <SSkeleton width={width} height={height} isLoading={isLoading} />;

@@ -5,7 +5,7 @@ interface IDropdownProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const SInput = styled.input`
   border: none;
-  padding: 8px 0px;
+  padding: 3px 0px;
   font-size: 13px;
   font-weight: 300;
 `;

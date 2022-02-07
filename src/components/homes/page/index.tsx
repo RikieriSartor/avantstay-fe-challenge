@@ -42,7 +42,7 @@ export default function HomePage() {
 
   return (
     <Main>
-      {(loading || data?.results.length) && (
+      {loading || data?.results.length ? (
         <>
           <SearchStats count={data?.count} isLoading={loading} />
 
@@ -63,9 +63,11 @@ export default function HomePage() {
             )}
           </Flex>
         </>
+      ) : (
+        <></>
       )}
 
-      {!loading && !data?.results.length && <NoResultsFound />}
+      {!loading && !data?.results.length ? <NoResultsFound /> : <></>}
     </Main>
   );
 }
