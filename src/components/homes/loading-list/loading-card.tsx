@@ -1,38 +1,51 @@
 import React from "react";
-import styled from "styled-components";
 import Skeleton from "@/components/skeleton";
-import { Flex } from "rebass";
-
-const RightBox = styled.div`
-  display: flex;
-  margin-left: 30px;
-  flex-direction: column;
-  justify-content: center;
-
-  > * + * {
-    margin-top: 4px;
-  }
-`;
-
-const Separator = styled.div`
-  height: 39px;
-`;
+import Text from "@/components/text";
+import { Box, Flex } from "rebass";
 
 export default function LoadingCard() {
   return (
     <Flex width="100%" height="100%">
       <Skeleton width="390px" height="208px" />
-      <RightBox>
-        <Skeleton width="132px" />
-        <Skeleton width="218px" height="28px" />
-        <Skeleton width="241px" />
+      <Flex ml="30px" justifyContent="center" flexDirection="column">
+        <Text fontSize="12px" lineHeight="122%">
+          <Skeleton width="132px" />
+        </Text>
 
-        <Separator />
+        <Text
+          mt="8px"
+          fontSize="19px"
+          lineHeight="114%"
+          fontWeight={600}
+          fontFamily="SangBleu Sunrise"
+        >
+          <Skeleton width="218px" height="28px" />
+        </Text>
 
-        <Skeleton width="74px" />
-        <Skeleton width="98px" height="22px" />
-        <Skeleton width="45px" />
-      </RightBox>
+        <Flex mt="16px" width={1}>
+          <Skeleton width="241px" />
+        </Flex>
+
+        <Flex mt="30px">
+          <Box width={1}>
+            <Text fontSize={12} lineHeight="122%">
+              <Skeleton width="74px" />
+            </Text>
+            <Text
+              mt="4px"
+              fontSize="20px"
+              fontWeight={600}
+              whiteSpace="nowrap"
+              lineHeight="110%"
+            >
+              <Skeleton width="98px" height="20px" />
+            </Text>
+            <Text mt="4px" fontSize={12} lineHeight="142%">
+              <Skeleton width="45px" height="14px" />
+            </Text>
+          </Box>
+        </Flex>
+      </Flex>
     </Flex>
   );
 }
