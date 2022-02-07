@@ -1,5 +1,7 @@
 import Button from "@/components/button";
+import { useHomeSearch } from "@/hooks/use-home-search";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import { Box, Flex } from "rebass";
 import styled from "styled-components";
@@ -13,6 +15,21 @@ const Message = styled.p`
 `;
 
 export default function NoResultsFound() {
+  const router = useRouter();
+  const { setCurrentPage } = useHomeSearch();
+
+  const regionName = router.query?.regionName || "";
+
+  function handleSeeAll() {
+    setCurrentPage(1);
+
+    router.push({
+      pathname: `/homes/${regionName}`,
+      query: {
+        order: "RELEVANCE",
+      },
+    });
+  }
   return (
     <Flex
       width={1}
@@ -37,7 +54,9 @@ export default function NoResultsFound() {
         </Message>
 
         <Flex width={1} alignItems="center" justifyContent="center">
-          <Button kind="secondary">See all $regioName homes</Button>
+          <Button kind="secondary" onClick={() => handleSeeAll()}>
+            See all {regionName} homes
+          </Button>
         </Flex>
       </Box>
     </Flex>
