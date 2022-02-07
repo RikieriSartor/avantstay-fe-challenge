@@ -49,7 +49,8 @@ export const HomeSearchProvider = ({
   children: React.ReactNode;
 }) => {
   const router = useRouter();
-  const { order, guests, coupon, regionName } = router.query;
+  const { order, guests, coupon, regionName, endDate, startDate } =
+    router.query;
 
   const [data, setData] = useState<HomeSearchResult>();
   const [loading, setLoading] = useState(true);
@@ -62,38 +63,50 @@ export const HomeSearchProvider = ({
       : "";
 
   const fetchData = useCallback(async () => {
-    if (currentPage === 1) setLoading(true);
+    try {
+      if (currentPage === 1) setLoading(true);
 
-    // TODO: add try/catch
-    const { data } = await apolloClient.query({
-      query: GET_HOMES,
-      variables: {
-        page: currentPage,
-        order: order || "RELEVANCE",
-        guests: Number(guests || 1),
-        region: regionID,
-        pageSize: PAGE_SIZE,
-      },
-    });
+      const { data: homeData } = await apolloClient.query({
+        query: GET_HOMES,
+        variables: {
+          page: currentPage,
+          order: order || "RELEVANCE",
+          guests: Number(guests || 1),
+          region: regionID,
+          pageSize: PAGE_SIZE,
+          period: {
+            checkIn: startDate || "",
+            checkOut: endDate || "",
+          },
+        },
+      });
 
-    if (!data.homes.results.length) {
-      setHasEndingResults(true);
+      if (!homeData.homes.results.length) {
+        if (data?.results.length && regionName !== data.results[0].regionName) {
+          setData({ count: 0, results: [] });
+        }
+        setHasEndingResults(true);
+        setLoading(false);
+        return;
+      }
+
+      if (currentPage === 1) {
+        setData(homeData.homes);
+      } else {
+        setData((prevValue) => ({
+          count: prevValue?.count || 0,
+          results: [...(prevValue?.results || []), ...homeData.homes.results],
+        }));
+      }
+
+      setHasEndingResults(false);
       setLoading(false);
-      return;
+    } catch (error: any) {
+      console.error(error);
+      setData({ count: 0, results: [] });
     }
-
-    if (currentPage === 1) {
-      setData(data.homes);
-    } else {
-      setData((prevValue) => ({
-        count: prevValue?.count || 0,
-        results: [...(prevValue?.results || []), ...data.homes.results],
-      }));
-    }
-
-    setHasEndingResults(false);
-    setLoading(false);
-  }, [currentPage, order, guests, regionID]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage, order, guests, regionID, startDate, endDate, regionName]);
 
   useEffect(() => {
     fetchData();

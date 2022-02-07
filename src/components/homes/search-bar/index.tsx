@@ -7,6 +7,7 @@ import { Region } from "@/types/region";
 import { useRouter } from "next/router";
 import { SearchParams } from "@/types/search";
 import { useHomeSearch } from "@/hooks/use-home-search";
+import { Flex } from "rebass";
 
 const Container = styled.div`
   width: 100%;
@@ -28,7 +29,6 @@ const Content = styled.div<IContentProps>`
   margin-bottom: 24px;
 
   > * + * {
-    margin-left: -1px;
     border-left: 1px solid transparent;
   }
 
@@ -43,7 +43,13 @@ const Content = styled.div<IContentProps>`
   }
 `;
 
-type FilterKey = "order" | "guests" | "regionID" | "coupon";
+type FilterKey =
+  | "order"
+  | "guests"
+  | "regionID"
+  | "coupon"
+  | "endDate"
+  | "startDate";
 
 export default function SearchBar({ regions, query, params }: SearchParams) {
   const router = useRouter();
@@ -55,6 +61,9 @@ export default function SearchBar({ regions, query, params }: SearchParams) {
   const coupon = query?.coupon || "";
   const regionName = params?.regionName || "";
 
+  const endDate = query?.endDate || "";
+  const startDate = query?.startDate || "";
+
   function handleFilters(key: FilterKey, value: string | number) {
     setCurrentPage(1);
 
@@ -65,6 +74,8 @@ export default function SearchBar({ regions, query, params }: SearchParams) {
           order,
           guests,
           coupon,
+          endDate,
+          startDate,
           [key]: value,
         },
       });
@@ -75,6 +86,8 @@ export default function SearchBar({ regions, query, params }: SearchParams) {
           order,
           guests,
           coupon,
+          endDate,
+          startDate,
           [key]: value,
         },
       });
@@ -91,6 +104,8 @@ export default function SearchBar({ regions, query, params }: SearchParams) {
           order,
           guests,
           coupon,
+          endDate,
+          startDate,
         },
       });
     } else {
@@ -100,6 +115,8 @@ export default function SearchBar({ regions, query, params }: SearchParams) {
           order,
           guests,
           coupon,
+          endDate,
+          startDate,
         },
       });
     }
@@ -127,16 +144,40 @@ export default function SearchBar({ regions, query, params }: SearchParams) {
               ))}
           </Dropdown>
         </Field>
-        <Field label="When">When </Field>
+        <Field label="When">
+          <Flex>
+            <Input
+              id="startDate"
+              min={new Date().toISOString().split("T")[0]}
+              max="2030-12-31"
+              type="date"
+              defaultValue={startDate || ""}
+              onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                handleFilters("startDate", e.currentTarget.value)
+              }
+              style={{ marginRight: 10 }}
+            />
+            <Input
+              id="endDate"
+              min={new Date().toISOString().split("T")[0]}
+              max="2030-12-31"
+              type="date"
+              defaultValue={endDate || ""}
+              onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                handleFilters("endDate", e.currentTarget.value)
+              }
+            />
+          </Flex>
+        </Field>
         <Field label="Who">
           <Input
             min={1}
             max={30}
-            maxLength={2}
             type="number"
             step={1}
             value={guests}
-            // TODO: Debounce it and create custom component
+            maxLength={2}
+            // TODO: Improvement -> Debounce it
             onChange={(e: React.FormEvent<HTMLInputElement>) =>
               handleFilters("guests", Number(e.currentTarget.value))
             }
@@ -161,7 +202,7 @@ export default function SearchBar({ regions, query, params }: SearchParams) {
           <Input
             type="text"
             defaultValue={coupon}
-            // TODO: Debounce it
+            // TODO: Improvement -> Debounce it
             onChange={(e: React.FormEvent<HTMLInputElement>) =>
               handleFilters("coupon", e.currentTarget.value)
             }
