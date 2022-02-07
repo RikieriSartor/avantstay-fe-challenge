@@ -8,6 +8,8 @@ export type SearchParams = {
     order?: string;
     guests?: number;
     coupon?: string;
+    endDate?: string;
+    startDate?: string;
   };
   params: {
     regionName?: string;
