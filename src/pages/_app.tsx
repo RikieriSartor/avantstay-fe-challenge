@@ -1,3 +1,4 @@
+import { LogRocketApp } from "@/components/logrocket";
 import apolloClient from "@/services/apollo";
 import GlobalStyle from "@/styles/globals";
 import "@/styles/globals.css";
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={defaultTheme}>
       <ApolloProvider client={apolloClient}>
+        <LogRocketApp />
         <GlobalStyle />
         <Component {...pageProps} />
       </ApolloProvider>
