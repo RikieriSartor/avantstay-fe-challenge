@@ -1,12 +1,9 @@
 import Page from "@/containers/page";
 import type { NextPage } from "next";
 import Head from "next/head";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Text from "@/components/text";
-import SearchBar from "@/components/homes/search-bar";
 import { Box, Flex } from "rebass";
-import Button from "@/components/button";
-import { Theme } from "@/types/theme";
 
 const Container = styled.div`
   display: flex;
